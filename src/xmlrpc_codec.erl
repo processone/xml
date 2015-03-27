@@ -507,7 +507,7 @@ encode_string({string, Cdata}, _xmlns_attrs) ->
     _attrs = _xmlns_attrs,
     {xmlel, <<"string">>, _attrs, _els}.
 
-decode_string_cdata(__TopXMLNS, <<>>) -> undefined;
+decode_string_cdata(__TopXMLNS, <<>>) -> <<>>;
 decode_string_cdata(__TopXMLNS, _val) -> _val.
 
 encode_string_cdata(undefined, _acc) -> _acc;
