@@ -25,7 +25,7 @@
 
 -author('alexey@process-one.net').
 
--export([element_to_binary/1, get_so_path/0,
+-export([element_to_binary/1,
 	 crypt/1, remove_cdata/1,
 	 remove_subtags/3, get_cdata/1, get_tag_cdata/1,
 	 get_attr/2, get_attr_s/2, get_tag_attr/2,
@@ -40,7 +40,7 @@
 
 %% Replace element_to_binary/1 with NIF
 load_nif() ->
-    SOPath = filename:join(get_so_path(), "xml"),
+    SOPath = p1_nif_utils:get_so_path(?MODULE, [p1_xml, xml], "xml"),
     case catch erlang:load_nif(SOPath, 0) of
         ok -> ok;
         Err -> error_logger:warning_msg("unable to load xml NIF: ~p~n", [Err]),
@@ -404,21 +404,3 @@ to_xmlel({_, Name, Attrs, Els}) ->
            children = [to_xmlel(El) || El <- Els]};
 to_xmlel({xmlcdata, CData}) ->
     {xmlcdata, iolist_to_binary(CData)}.
-
-get_so_path() ->
-    PrivDir = case code:priv_dir(p1_xml) of
-                  {error, _} ->
-                      %% code:priv is looking for a directory with Name and optional version in path
-                      %% Search for p1_xml will fail if we are using xml as directory name:
-                      case code:priv_dir(xml) of
-                          {error, _} ->
-                              EbinDir = filename:dirname(code:which(?MODULE)),
-                              AppDir = filename:dirname(EbinDir),
-                              filename:join([AppDir, "priv"]);
-                          V2 ->
-                              V2
-                      end;
-                  V ->
-                      V
-              end,
-    filename:join([PrivDir, "lib"]).
