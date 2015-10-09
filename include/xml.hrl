@@ -28,6 +28,9 @@
     children = [] :: [xmlel() | cdata()]
 }).
 
+%% @type cdata() = {xmlcdata, CData}
+%%        CData = binary().
+%%  Type to hold CData (= Text) content in xmlel() data structure.
 -type(cdata() :: {xmlcdata, CData::binary()}).
 
 -type(attr() :: {Name::binary(), Value::binary()}).
