@@ -12,3 +12,4 @@ _build
 vars.config
 rebar
 deps/
+tools/*.beam
