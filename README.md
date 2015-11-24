@@ -15,8 +15,8 @@ be 8-18 times faster than calling `xmerl_scan:string/2`.
 
 This application is now called [fast_xml](https://github.com/processone/fast_xml)
 and was renamed after major optimisations to put emphasis on the fact it is damn
-fast. Development is now being done in fast_xml repository. This repository is kept to
-avoid breaking code that depend on it.
+fast. Development is now being done in [fast_xml](https://github.com/processone/fast_xml)
+repository. This repository is kept to avoid breaking code that depend on it.
 
 ## Building
 
