@@ -13,6 +13,11 @@ This module can parse files much faster than built-in module `xmerl`.
 Depending on file complexity and size `xml_stream:parse_element/1` can
 be 8-18 times faster than calling `xmerl_scan:string/2`.
 
+This application is now called [fast_xml](https://github.com/processone/fast_xml)
+and was renamed after major optimisations to put emphasis on the fact it is damn
+fast. Development is now being done in fast_xml repository. This repository is kept to
+avoid breaking code that depend on it.
+
 ## Building
 
 Erlang XML parser can be build as follow:
